@@ -46,14 +46,14 @@ const getEthereumContract = async() => {
     const connectedAccount = getGlobalState('connectedAccount');
     if(connectedAccount) {
         const web3 = window.web3;
-        const networkId = await web3.eth.net.getId();
-        const networkData = await abi.networks[networkId];
-        if(networkData) {
-            const contract = new web3.eth.Contract(abi.abi, networkData.address)
+        // const networkId = await web3.eth.net.getId();
+        // const networkData = await abi.networks[networkId];
+        // if(networkData) {
+            const contract = new web3.eth.Contract(abi.abi,address)
             return contract;
-        }else{
-            return null;
-        }
+        // }else{
+            // return null;
+        // }
     }else{
         return getGlobalState('contract');
     }
@@ -62,6 +62,7 @@ const getEthereumContract = async() => {
 const performContribute = async(amount) => {
     try {
         amount = window.web3.utils.toWei(amount.toString(), 'ether');
+        //this step will always refer to the DAO smart Contract -> DAO.json abi
         const contract = await getEthereumContract();
         account = getGlobalState('connectedAccount');
         await contract.methods.contribute().sender({from: account, value: amount});
