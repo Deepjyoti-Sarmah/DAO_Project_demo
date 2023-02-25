@@ -33,4 +33,10 @@ const daysRemaining = (days) => {
     return days == 1 ? "1 day" : days+"days"
 }
 
-export default Index
+export {
+  truncate,
+  setGlobalState,
+  useGlobalState,
+  getGlobalState,
+  daysRemaining,
+}
